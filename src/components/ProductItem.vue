@@ -1,28 +1,42 @@
 <template>
-  <div class="media product">
-    <div class="media-left">
-      <a href="#">
-        <img class="media-object" src="dist/images/aplusautomation.jpg" alt="charmander">
-      </a>
+    <div class="media product">
+        <div class="media-left">
+            <a href="#">
+                <img class="media-object" :src="urlImage" alt="charmander">
+            </a>
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">{{product.name}}</h4>
+            <p>{{product.summary}}</p>
+            <template v-if="product.canBuy">
+                <input name="quantity-product-1" type="number" value="1" min="1">
+                <a data-product="1" href="#" class="price"> {{formatPrice}} </a>
+            </template>
+            <span v-else class="price">{{formatPrice}}</span>
+        </div>
     </div>
-    <div class="media-body">
-      <h4 class="media-heading">aplusautomation</h4>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. At dicta asperiores veniam repellat unde debitis quisquam magnam magni ut deleniti!</p>
-      <input name="quantity-product-1" type="number" value="1" min="1">
-      <a data-product="1" href="#" class="price"> 12 USD </a>
-    </div>
-  </div>
 </template>
 
 <script>
-export default {
-    name: 'product-item',
-    data (){
-        return {
+    import {toCurrency} from "../helpers";
 
+    export default {
+        name: 'product-item',
+        props: {
+            product: {type: Object, default: {}}
+        },
+        data() {
+            return {}
+        },
+        computed: {
+            urlImage() {
+                return "/dist/images/" + this.product.image;
+            },
+            formatPrice() {
+                return toCurrency(this.product.price);
+            }
         }
     }
-}
 </script>
 
 <style>
