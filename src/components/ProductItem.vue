@@ -9,7 +9,7 @@
             <h4 class="media-heading">{{product.name}}</h4>
             <p>{{product.summary}}</p>
             <template v-if="product.canBuy">
-                <input v-model="quantity" type="text" value="1" min="1">
+                <input v-model="quantity" type="number" value="1" min="1">
                 <a @click.prevent="handleBuyProduct" href="#" class="price"> {{formatPrice}} </a>
             </template>
             <span v-else class="price">{{formatPrice}}</span>
@@ -53,7 +53,7 @@
             ...mapActions({
                 'actionBuyProduct': 'cart/handleBuyProduct'
             }),
-            handleBuyProduct(e){
+            handleBuyProduct(){
                 let check = validateQuantity(this.quantity);
                 if(check === 0) {
                     let data = {
