@@ -13,5 +13,13 @@ export default {
     handleDelete({commit, state},data){
         let cartsClone = state.cartList.filter(item => item.product.id !== data.product.id);
         commit('CHANGE_CART_LIST', cartsClone);
+    },
+    handleUpdate({commit, state}, data){
+        let cartsClone = [...state.cartList];
+        let index = cartsClone.findIndex(item => item.product.id === data.product.id);
+        if(index !== -1){
+            cartsClone.splice(index, 1, data);
+            commit('CHANGE_CART_LIST', cartsClone);
+        }
     }
 }

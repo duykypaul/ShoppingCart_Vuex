@@ -8,6 +8,7 @@
             </div>
         </div>
         <notifications group="notify" :duration="2000" position="bottom right"/>
+        <comp-loading :class="{show : isLoading}"/>
     </div>
 
 </template>
@@ -16,12 +17,19 @@
     import CompTitle from "./components/CompTitle";
     import CartWrapper from "./components/CartWrapper";
     import ProductList from "./components/ProductList";
+    import CompLoading from "./components/CompLoading";
+    import {mapState} from "vuex";
 
     export default {
         name: 'app',
-        components: {ProductList, CartWrapper, CompTitle},
+        components: {CompLoading, ProductList, CartWrapper, CompTitle},
         data() {
             return {}
+        },
+        computed: {
+            ...mapState([
+                'isLoading'
+            ])
         }
     }
 </script>

@@ -23,5 +23,4 @@ const store = new Vuex.Store ({
     product: moduleProduct
   }
 });
-store.commit('increment');
 export default store;

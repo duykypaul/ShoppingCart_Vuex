@@ -18,12 +18,10 @@
     import CartHeader from "./CartHeader";
     import CartBodyTable from "./CartBodyTable";
     import CartFooter from "./CartFooter";
-    // import CartNotify from "./CartNotify";
 
     export default {
         name: 'cart-wrapper',
         components: {
-          // CartNotify,
           CartFooter,
           CartBodyTable,
           CartHeader},
