@@ -18,6 +18,7 @@
         validateQuantity
     } from "../helpers";
     import {mapActions} from "vuex";
+    import {NOTIFY_ACTION_DELETE} from "../constants/config";
     
     export default {
         name: 'cart-body-item',
@@ -41,7 +42,10 @@
                 'actionDelete': 'cart/handleDelete'
             }),
             handleDelete(){
-                this.actionDelete(this.cart);
+                if(confirm("Do you want to remove product?")) {
+                    this.actionDelete(this.cart);
+                    this.$notify(NOTIFY_ACTION_DELETE);
+                }
             }
         }
     }

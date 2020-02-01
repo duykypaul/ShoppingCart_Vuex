@@ -23,6 +23,7 @@
         validateQuantity
     } from "../helpers";
     import {
+        NOTIFY_ACTION_ADD,
         NOTIFY_GREATER_THAN_ONE,
         NOTIFY_IS_A_NUMBER,
         NOTIFY_IS_EMPTY
@@ -37,8 +38,7 @@
         },
         data() {
             return {
-                quantity: 1,
-                NOTIFY_GREATER_THAN_ONE
+                quantity: 1
             }
         },
         computed: {
@@ -61,21 +61,17 @@
                         quantity: parseInt(this.quantity)
                     };
                     this.actionBuyProduct(data);
+                    this.$notify(NOTIFY_ACTION_ADD);
+                    this.quantity = 1;
                 } else {
-                    let text = '';
                     if(check === 1){
-                        text = NOTIFY_IS_EMPTY;
+                        this.$notify(NOTIFY_IS_EMPTY);
                     } else if (check === 2) {
-                        text = NOTIFY_GREATER_THAN_ONE;
+                        this.$notify(NOTIFY_GREATER_THAN_ONE);
                     } else {
-                        text = NOTIFY_IS_A_NUMBER;
+                        this.$notify(NOTIFY_IS_A_NUMBER);
                     }
-                    this.$notify({
-                        group: 'notify',
-                        type: 'error',
-                        title: 'Error!',
-                        text: text
-                    });
+                    
                 }
             }
         }
