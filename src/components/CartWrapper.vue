@@ -10,7 +10,7 @@
         </table>
       </div>
     </div>
-    <cart-notify />
+<!--    <cart-notify />-->
   </div>
 </template>
 
@@ -18,11 +18,15 @@
     import CartHeader from "./CartHeader";
     import CartBodyTable from "./CartBodyTable";
     import CartFooter from "./CartFooter";
-    import CartNotify from "./CartNotify";
+    // import CartNotify from "./CartNotify";
 
     export default {
         name: 'cart-wrapper',
-        components: {CartNotify, CartFooter, CartBodyTable, CartHeader},
+        components: {
+          // CartNotify,
+          CartFooter,
+          CartBodyTable,
+          CartHeader},
         data() {
             return {}
         }
