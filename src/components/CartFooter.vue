@@ -1,22 +1,27 @@
 <template>
-  <tfoot id="my-cart-footer">
+    <tfoot id="my-cart-footer">
     <!-- CART FOOTER -->
     <tr>
-      <td colspan="4">There are <b>5</b> items in your shopping cart.</td>
-      <td colspan="2" class="total-price text-left">12 USD</td>
+        <td colspan="4">There are <b>{{totalQuantity}}</b> items in your shopping cart.</td>
+        <td colspan="2" class="total-price text-left">{{totalPrice}} USD</td>
     </tr>
-  </tfoot>
+    </tfoot>
 </template>
 
 <script>
-export default {
-    name: 'cart-footer',
-    data (){
-        return {
-
+    import {mapState} from 'vuex';
+    export default {
+        name: 'cart-footer',
+        data() {
+            return {}
+        },
+        computed: {
+            ...mapState({
+                totalQuantity: state => state.cart.totalQuantity,
+                totalPrice: state => state.cart.totalPrice,
+            })
         }
     }
-}
 </script>
 
 <style>
