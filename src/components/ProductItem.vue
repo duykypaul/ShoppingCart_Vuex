@@ -19,6 +19,7 @@
 
 <script>
     import {toCurrency, validateQuantity} from "../helpers";
+    import {NOTIFY_GREATER_THAN_ONE, NOTIFY_IS_A_NUMBER, NOTIFY_IS_EMPTY} from '../constants/config';
 
     export default {
         name: 'product-item',
@@ -27,7 +28,8 @@
         },
         data() {
             return {
-                quantity: 1
+                quantity: 1,
+                NOTIFY_GREATER_THAN_ONE
             }
         },
         computed: {
@@ -40,10 +42,25 @@
         },
         methods: {
             handleBuyProduct(e){
-                if(validateQuantity(this.quantity)) {
+                let check = validateQuantity(this.quantity);
+                
+                if(check === 0) {
                     console.log("valid", this.quantity);
                 } else {
-                    console.log("inValid", this.quantity);
+                    let text = '';
+                    if(check === 1){
+                        text = NOTIFY_IS_EMPTY;
+                    } else if (check === 2) {
+                        text = NOTIFY_GREATER_THAN_ONE;
+                    } else {
+                        text = NOTIFY_IS_A_NUMBER;
+                    }
+                    this.$notify({
+                        group: 'notify',
+                        type: 'error',
+                        title: 'Error!',
+                        text: text
+                    });
                 }
             }
         }

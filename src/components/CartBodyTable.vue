@@ -5,13 +5,13 @@
             <cart-body-item v-for="(item, index) in carts" :key="index"/>
         </template>
         <tr v-else>
-            <th colspan="6">{{NOTIFY_EMPTY}}</th>
+            <th colspan="6">{{NOTIFY_EMPTY_PRODUCT}}</th>
         </tr>
     </tbody>
 </template>
 
 <script>
-    import {NOTIFY_EMPTY} from '../constants/config';
+    import {NOTIFY_EMPTY_PRODUCT} from '../constants/config';
     import {mapState} from 'vuex';
     import CartBodyItem from "./CartBodyItem";
 
@@ -20,7 +20,7 @@
         components: {CartBodyItem},
         data() {
             return {
-                NOTIFY_EMPTY
+                NOTIFY_EMPTY_PRODUCT
             }
         },
         computed: {

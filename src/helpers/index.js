@@ -5,11 +5,18 @@ const toCurrency = function (value, unit = 'USD', dir = 'right') {
     return unit + ' ' + value;
 };
 const validateQuantity = function (value){
-    let number = parseInt(value);
-    if(number == value && !isNaN(number)){
-        return number >= 1;
+    // value is '' -> return 1
+    // value <= 0 -> return 2;
+    // value is string -> return 3;
+    // value is valid ->return 0
+    if(value.length == 0) {
+        return 1;
     }
-    return false;
+    let number = parseInt(value);
+    if(!isFinite(value)){
+        return 3;
+    }
+    return number >= 1 ? 0 : 2;
 }
 export {
     toCurrency,
