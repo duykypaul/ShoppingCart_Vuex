@@ -12,5 +12,9 @@ export default {
             cartList: cartsClone
         }
         commit('HANDLE_BUY_PRODUCT', obj);
+    },
+    handleDelete({commit, state},data){
+        let cartsClone = state.cartList.filter(item => item.product.id !== data.product.id);
+        commit('HANDLE_DELETE', cartsClone);
     }
 }

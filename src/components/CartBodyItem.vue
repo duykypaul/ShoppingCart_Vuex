@@ -7,7 +7,7 @@
         <td><strong>{{formatSubTotal}}</strong></td>
         <td>
             <a class="label label-info update-cart-item" href="#" data-product="">Update</a>
-            <a class="label label-danger delete-cart-item" href="#" data-product="">Delete</a>
+            <a class="label label-danger delete-cart-item" href="#" @click.prevent="handleDelete">Delete</a>
         </td>
     </tr>
 </template>
@@ -17,6 +17,8 @@
         toCurrency,
         validateQuantity
     } from "../helpers";
+    import {mapActions} from "vuex";
+    
     export default {
         name: 'cart-body-item',
         props: {
@@ -32,6 +34,14 @@
             },
             formatSubTotal() {
                 return toCurrency(this.cart.product.price * this.cart.quantity);
+            }
+        },
+        methods: {
+            ...mapActions({
+                'actionDelete': 'cart/handleDelete'
+            }),
+            handleDelete(){
+                this.actionDelete(this.cart);
             }
         }
     }
