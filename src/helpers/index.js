@@ -4,6 +4,14 @@ const toCurrency = function (value, unit = 'USD', dir = 'right') {
     }
     return unit + ' ' + value;
 };
+const validateQuantity = function (value){
+    let number = parseInt(value);
+    if(number == value && !isNaN(number)){
+        return number >= 1;
+    }
+    return false;
+}
 export {
-    toCurrency
+    toCurrency,
+    validateQuantity
 }

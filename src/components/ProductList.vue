@@ -8,7 +8,6 @@
                         :product="item"
                         :key="item.id"
                 />
-            
             </div>
         </div>
     </div>

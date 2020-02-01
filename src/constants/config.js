@@ -1,5 +1,5 @@
-const NOTI_EMPTY = 'Empty product in your cart';
+const NOTIFY_EMPTY = 'Empty product in your cart';
 
 export {
-    NOTI_EMPTY
+    NOTIFY_EMPTY
 }

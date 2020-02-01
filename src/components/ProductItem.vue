@@ -9,8 +9,8 @@
             <h4 class="media-heading">{{product.name}}</h4>
             <p>{{product.summary}}</p>
             <template v-if="product.canBuy">
-                <input name="quantity-product-1" type="number" value="1" min="1">
-                <a data-product="1" href="#" class="price"> {{formatPrice}} </a>
+                <input v-model="quantity" type="text" value="1" min="1">
+                <a @click.prevent="handleBuyProduct" href="#" class="price"> {{formatPrice}} </a>
             </template>
             <span v-else class="price">{{formatPrice}}</span>
         </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-    import {toCurrency} from "../helpers";
+    import {toCurrency, validateQuantity} from "../helpers";
 
     export default {
         name: 'product-item',
@@ -26,7 +26,9 @@
             product: {type: Object, default: {}}
         },
         data() {
-            return {}
+            return {
+                quantity: 1
+            }
         },
         computed: {
             urlImage() {
@@ -34,6 +36,15 @@
             },
             formatPrice() {
                 return toCurrency(this.product.price);
+            }
+        },
+        methods: {
+            handleBuyProduct(e){
+                if(validateQuantity(this.quantity)) {
+                    console.log("valid", this.quantity);
+                } else {
+                    console.log("inValid", this.quantity);
+                }
             }
         }
     }
