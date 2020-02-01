@@ -3,10 +3,10 @@
         <th scope="row">{{index}}</th>
         <td>{{cart.product.name}}</td>
         <td>{{formatPrice}}</td>
-        <td><input :value="cart.quantity" @blur="handleUpdate" type="text" value="1" min="1"></td>
+        <td><input :value="cart.quantity" @blur="handleUpdate" type="number" value="1" min="1"></td>
         <td><strong>{{formatSubTotal}}</strong></td>
         <td>
-            <a class="label label-info update-cart-item" href="#" >Update</a>
+            <a class="label label-info update-cart-item" href="#" @click.prevent="">Update</a>
             <a class="label label-danger delete-cart-item" href="#" @click.prevent="handleDelete">Delete</a>
         </td>
     </tr>
