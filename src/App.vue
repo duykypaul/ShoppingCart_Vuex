@@ -7,7 +7,7 @@
                 <cart-wrapper/>
             </div>
         </div>
-        <notifications group="notify" :duration="2000" position="bottom right"/>
+        <notifications group="notify" :duration="100000" position="bottom right"/>
     </div>
 
 </template>
@@ -27,7 +27,7 @@
 </script>
 
 <style>
-    .notifications{
+    .vue-notification-group{
         padding-right: 10px;
         padding-bottom: 10px;
     }

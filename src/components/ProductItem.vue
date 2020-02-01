@@ -18,8 +18,17 @@
 </template>
 
 <script>
-    import {toCurrency, validateQuantity} from "../helpers";
-    import {NOTIFY_GREATER_THAN_ONE, NOTIFY_IS_A_NUMBER, NOTIFY_IS_EMPTY} from '../constants/config';
+    import {
+        toCurrency,
+        validateQuantity
+    } from "../helpers";
+    import {
+        NOTIFY_GREATER_THAN_ONE,
+        NOTIFY_IS_A_NUMBER,
+        NOTIFY_IS_EMPTY
+    } from '../constants/config';
+    
+    import {mapActions} from 'vuex';
 
     export default {
         name: 'product-item',
@@ -41,11 +50,17 @@
             }
         },
         methods: {
+            ...mapActions({
+                'actionBuyProduct': 'cart/handleBuyProduct'
+            }),
             handleBuyProduct(e){
                 let check = validateQuantity(this.quantity);
-                
                 if(check === 0) {
-                    console.log("valid", this.quantity);
+                    let data = {
+                        product: this.product,
+                        quantity: parseInt(this.quantity)
+                    };
+                    this.actionBuyProduct(data);
                 } else {
                     let text = '';
                     if(check === 1){

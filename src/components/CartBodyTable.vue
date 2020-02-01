@@ -2,7 +2,12 @@
     <tbody id="my-cart-body">
     <!-- CART BODY -->
         <template v-if="carts.length">
-            <cart-body-item v-for="(item, index) in carts" :key="index"/>
+            <cart-body-item
+                    v-for="(item, index) in carts"
+                    :key="item.product.id"
+                    :cart="item"
+                    :index="index + 1"
+            />
         </template>
         <tr v-else>
             <th colspan="6">{{NOTIFY_EMPTY_PRODUCT}}</th>
